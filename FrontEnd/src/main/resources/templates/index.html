@@ -16,18 +16,16 @@
 
                 <div th:if="${session.packet == null}"
                      style="width: 30%; float:none; margin-left: auto; margin-right: auto">
-                    <div class="panel panel-default">
-                        <div class="panel-body" style="text-align: center;">
-                            <form method="post" th:action="@{/index}">
-                                <label for="packetId"><p th:text="#{index.enterId}">Enter Packet ID</p></label>
+                    <form method="post" th:action="@{/index}">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><label for="packetId"><p th:text="#{index.enterId}">Enter Packet
+                                ID</p></label></div>
+                            <div class="panel-body" style="text-align: center;">
                                 <input type="text" id="packetId" name="packetId" class="form-control"/>
-
-                                <div id="control">
-                                    <input type="submit" class="btn btn-primary form-control" value="Track"/>
-                                </div>
-                            </form>
+                                <input type="submit" class="btn btn-primary form-control" value="Track"/>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div th:if="${session.packet != null}" style="width: 100%;">

@@ -33,4 +33,6 @@ public class UriUtil {
         return getWithServerPath(getUris().getContactInformation());
     }
 
+    public String getLongLatForAddressPath() { return getWithServerPath(getUris().getLongLatForAddress());
+    }
 }

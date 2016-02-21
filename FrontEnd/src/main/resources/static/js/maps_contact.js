@@ -2,7 +2,9 @@
 function initialize() {
     //TODO coordinates should come from back end, that got them from a google maps search on the address of the company
     //Create variable holding latitude and longitude of the address of CVO Leerstad (project client is fictional, this is a school project)
-    latLng = new google.maps.LatLng(51.1115523, 3.9875753);
+    var lat = document.getElementById('latitude').getAttribute('value');
+    var long = document.getElementById('longitude').getAttribute('value');
+    var latLng = new google.maps.LatLng(lat, long);
     //create properties for map
     var mapProp = {
         //center the map to the address off CVO Leerstad (project client is fictional)
