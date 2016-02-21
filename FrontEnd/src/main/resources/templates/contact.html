@@ -1,6 +1,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head"></head>
 <body>
+<form th:object="${longLat}">
+<input type="hidden" th:field="*{longitude}" />
+<input type="hidden" th:field="*{latitude}" />
+</form>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAayrG0GhNdnp_HZ8SawVvWvAsJSalbeig"></script>
 <script th:src="@{/js/maps_contact.js}"></script>
 <div th:replace="fragments/fragments :: header"></div>
@@ -23,8 +27,8 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="panel panel-default left">
-                                                        <div class="panel-heading white-background" id="address" style="border-color: white;"><h4>Address</h4>
+                                                    <div class="panel panel-default" id="address">
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>Address</h4>
                                                             <div class="panel-body">
                                                                 <span th:text="${contactInformation.street}"/>
                                                                 <span th:text="${contactInformation.number}"/>
@@ -35,8 +39,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="panel panel-default right">
-                                                        <div class="panel-heading white-background" id="phone"><h4>Phone</h4>
+                                                    <div class="panel panel-default" id="phone">
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>Phone</h4>
                                                             <div class="panel-body">
                                                                 <table class="table">
                                                                     <thead>
@@ -57,8 +61,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="panel panel-default ">
-                                                        <div class="panel-heading white-background" id="fax"><h4>Fax</h4>
+                                                    <div class="panel panel-default" id="fax">
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>Fax</h4>
                                                             <div class="panel-body">
                                                                 <table class="table">
                                                                     <thead>
@@ -77,8 +81,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading white-background" id="email"><h4>E-Mail</h4>
+                                                    <div class="panel panel-default" id="email">
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>E-Mail</h4>
                                                             <div class="panel-body">
                                                                 <table class="table">
                                                                     <thead>
@@ -92,6 +96,15 @@
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading white-background" id="about"><h4>About</h4>
+                                                            <div class="panel-body">
+                                                                <pre th:text="${contactInformation.aboutText}" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -116,8 +129,21 @@
 <div th:replace="fragments/fragments :: div.scripts"></div>
 <script type="text/javascript">
     $(document).ready(function() {
-        var rightHeight = $('.right').height();
-        $('.left').css({'height':rightHeight});
+        var phoneHeight = $('#phone').height();
+        var addressHeight = $('#address').height();
+        if (phoneHeight > addressHeight) {
+            $('#address').css({'height': phoneHeight});
+        } else {
+            $('#phone').css({'height': addressHeight});
+        }
+
+        var emailHeight = $('#email').height();
+        var faxHeight = $('#fax').height();
+        if (emailHeight > faxHeight) {
+            $('#fax').css({'height': emailHeight});
+        } else {
+            $('#email').css({'height': faxHeight});
+        }
     });
 </script>
 </body>

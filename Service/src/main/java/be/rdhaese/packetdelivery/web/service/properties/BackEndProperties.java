@@ -41,6 +41,7 @@ public class BackEndProperties {
 
     public static class Uris{
         private String contactInformation;
+        private String longLatForAddress;
 
         public String getContactInformation() {
             return contactInformation;
@@ -48,6 +49,14 @@ public class BackEndProperties {
 
         public void setContactInformation(String contactInformation) {
             this.contactInformation = contactInformation;
+        }
+
+        public String getLongLatForAddress() {
+            return longLatForAddress;
+        }
+
+        public void setLongLatForAddress(String longLatForAddress) {
+            this.longLatForAddress = longLatForAddress;
         }
     }
 }
