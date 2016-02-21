@@ -1,0 +1,146 @@
+<!--TODO remove jquery libs if not used-->
+<!--TODO extract css into classes-->
+<!--TODO replace text with properties-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAayrG0GhNdnp_HZ8SawVvWvAsJSalbeig"></script>
+<script th:src="@{/js/maps_index.js}"></script>
+<div th:replace="fragments/fragments :: header"></div>
+<div class="container">
+    <div th:replace="fragments/fragments :: div#page-header"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="width: 80%; float:none; margin-left:auto; margin-right:auto;">
+
+                <div th:if="${session.packet == null}"
+                     style="width: 30%; float:none; margin-left: auto; margin-right: auto">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="text-align: center;">
+                            <form method="post" th:action="@{/index}">
+                                <label for="packetId"><p th:text="#{index.enterId}">Enter Packet ID</p></label>
+                                <input type="text" id="packetId" name="packetId" class="form-control"/>
+
+                                <div id="control">
+                                    <input type="submit" class="btn btn-primary form-control" value="Track"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="${session.packet != null}" style="width: 100%;">
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3>Location Updates
+                                            <small>For Packet: <span th:text="${session.packet}"/></small>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right;">
+                                        <a th:href="@{/clear-packet}" class="btn btn-primary" role="button"
+                                           style="margin-top: 10px;">Track Other
+                                            Packet</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body" id="googleMap" style="height: 50%;"></div>
+                        <div class="panel-footer">TODO "legend"</div>
+                    </div>
+                    <hr/>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3>Remarks
+                                            <small>(5)</small>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right;">
+                                        <button data-toggle="collapse" data-target="#remarks-body"
+                                                style="margin-top: 10px;"
+                                                class="btn btn-primary" id="remarks-toggle"><span
+                                                class="show-toggle">&#x25BC;</span> Show
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="remarks-body" class="collapse">
+                            <div class="panel-body">The courier added following remarks:</div>
+                            <table class="table table-striped" style="width: 100%">
+                                <!--TODO IS NOT SHOWING-->
+                                <thead>
+                                <th>Time Added</th>
+                                <th>Description</th>
+                                </thead>
+                                <tbody>
+                                <!--<tr th:each="phoneNumber : ${contactInformation.phoneNumbers}">
+                                    <td th:text="${phoneNumber.key}">title</td>
+                                    <td th:text="${phoneNumber.value}">number</td>-->
+                                <tr>
+                                    <td>DUMMYDATA</td>
+                                    <td>DUMMYDATA</td>
+                                </tr>
+                                <tr>
+                                    <td>DUMMYDATA</td>
+                                    <td>DUMMYDATA</td>
+                                </tr>
+                                <tr>
+                                    <td>DUMMYDATA</td>
+                                    <td>DUMMYDATA</td>
+                                </tr>
+                                <tr>
+                                    <td>DUMMYDATA</td>
+                                    <td>DUMMYDATA</td>
+                                </tr>
+                                <tr>
+                                    <td>DUMMYDATA</td>
+                                    <td>DUMMYDATA</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+</div>
+
+<div th:replace="fragments/fragments :: div.scripts"></div>
+<script type="text/javascript">
+
+    $("#remarks-body").on("shown.bs.collapse", function () {
+        console.log('in shown')
+        $('#remarks-toggle').html('<span class="hide-toggle">&#x25B2;</span> Hide');
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    $("#remarks-body").on("hidden.bs.collapse", function () {
+        console.log('in hidden');
+        $('#remarks-toggle').html('<span class="show-toggle">&#x25BC;</span> Show');
+    });
+
+    $('#remarks-toggle').click(function () {
+        if ($('button span').hasClass('show-toggle')) {
+
+
+        }
+        else {
+
+        }
+    });
+</script>
+</body>
+</html>

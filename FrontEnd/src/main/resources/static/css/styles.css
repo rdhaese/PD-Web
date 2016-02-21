@@ -6,32 +6,26 @@ img{
   margin: 0 auto;
 }
 
-.rd-blue {
-  color: #009BD8;
+.pd-primary1 {
+  color: #b25f09;
 
 }
 
-.rd-red {
-  color: #ED2B29;
+.pd-primary2 {
+  color: #000bae;
 }
 
-.rdportal {
+.pd-brand {
   background: white;
-
 }
 
-.rdportal:hover {
+.pd-brand:hover {
   background: white !important;
-
-
 }
 
-.dropback:focus{
-  background: red !important;
-}
-.container input {
-
-}
+/*.dropback:focus{*/
+  /*background: red !important;*/
+/*}*/
 
 .container label{
   display:inline-block;
@@ -41,22 +35,19 @@ img{
 }
 
 .headertop {
-  background:  #E2001A;
+  background: #000bae;
   color: white !important;
 }
-.rdlogo {
+.logo {
   background: white;
-
   width: 100%;
 }
 
 .headertext > li > a {
-
   color: white !important;
 }
 
 .headertext > li > p {
-
   color: white !important;
 }
 
@@ -68,15 +59,22 @@ ul.head ul.navbar ul.navbar-nav ul.navbar-right ul.headertext {
   color:white;
 }
 
-.navbar-nav>.open>a:focus {
-  background-color: #E2001A !important;
-  /* background-color: #e7e7e7; */
-}
-
 .form-control{
   margin: 5px;
 }
 
 .val-error{
   color:red;
+}
+
+.white-background {
+  background-color: white!important;
+}
+
+.page-header {
+  margin: 5px 0 10px;
+}
+
+.navbar {
+  margin-bottom: 5px;
 }

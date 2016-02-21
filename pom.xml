@@ -2,6 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--Spring Boot: convention over configuration-->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -30,7 +31,7 @@
     <nexus-repo.url>http://localhost:8081/nexus/content/repositories/packet_delivery</nexus-repo.url>
   </properties>
 
-  <!--Don't forget to add server in settings.xml used by maven-->
+  <!--Don't forget to add server in settings.xml used by local maven instance-->
   <distributionManagement>
     <snapshotRepository>
       <id>${nexus-repo.id}</id>
@@ -58,6 +59,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>be.rdhaese.packetdelivery</groupId>
+      <artifactId>dto</artifactId>
+      <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
