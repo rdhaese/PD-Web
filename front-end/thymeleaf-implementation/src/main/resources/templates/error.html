@@ -1,0 +1,28 @@
+<!--TODO remove jquery libs if not used-->
+<!--TODO extract css into classes-->
+<!--TODO replace text with properties-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+<form th:object="${longLat}">
+    <input type="hidden" th:field="*{longitude}" />
+    <input type="hidden" th:field="*{latitude}" />
+</form>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAayrG0GhNdnp_HZ8SawVvWvAsJSalbeig"></script>
+<script th:src="@{/js/maps_contact.js}"></script>
+<div th:replace="fragments/fragments :: header"></div>
+
+<div class="container">
+    <div th:replace="fragments/fragments :: div#page-header"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <!--TODO better error page-->
+            <p>Oops, something went wrong...</p>
+        </div>
+    </div>
+
+    <hr/>
+</div>
+</body>
+</html>
