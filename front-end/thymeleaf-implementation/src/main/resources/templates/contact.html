@@ -1,0 +1,158 @@
+<!--TODO remove jquery libs if not used-->
+<!--TODO extract css into classes-->
+<!--TODO replace text with properties-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body>
+<form th:object="${longLat}">
+<input type="hidden" th:field="*{longitude}" />
+<input type="hidden" th:field="*{latitude}" />
+</form>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAayrG0GhNdnp_HZ8SawVvWvAsJSalbeig"></script>
+<script th:src="@{/js/maps_contact.js}"></script>
+<div th:replace="fragments/fragments :: header"></div>
+
+<div class="container">
+    <div th:replace="fragments/fragments :: div#page-header"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="width: 80%; float:none; margin-left:auto; margin-right:auto;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><h3>Contact Information</h3>
+                                    <div class="panel-body" id="googleMap" style="height: 50%;"></div>
+                                    <div class="panel-footer">
+
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="panel panel-default" id="address">
+                                                        <img th:src="@{/images/icon-address.png}" width="25px" height="25px" style="float: right; margin-top: 15px; margin-right: 15px;"/>
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>Address</h4>
+                                                            <div class="panel-body">
+                                                                <span th:text="${contactInformation.street}"/>
+                                                                <span th:text="${contactInformation.number}"/>
+                                                                <span th:if="@{(contactInformation.mailbox != null) and (!contactInformation.mailbox.isEmpty)}">, box <span th:text="${contactInformation.mailbox}"/></span><br/>
+                                                                <span th:text="${contactInformation.postalCode}"/> <span th:text="${contactInformation.city}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="panel panel-default" id="phone">
+                                                        <img th:src="@{/images/icon-phone.png}" width="25px" height="25px" style="float: right; margin-top: 15px; margin-right: 15px;"/>
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>Phone</h4>
+                                                            <div class="panel-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <th>Title</th>
+                                                                    <th>Number</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr th:each="phoneNumber : ${contactInformation.phoneNumbers}">
+                                                                        <td th:text="${phoneNumber.key}">title</td>
+                                                                        <td th:text="${phoneNumber.value}">number</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="panel panel-default" id="fax">
+                                                        <img th:src="@{/images/icon-fax.png}" width="25px" height="25px" style="float: right; margin-top: 15px; margin-right: 15px;"/>
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>Fax</h4>
+                                                            <div class="panel-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <th>Title</th>
+                                                                    <th>Number</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr th:each="faxNumber : ${contactInformation.faxNumbers}">
+                                                                        <td th:text="${faxNumber.key}">title</td>
+                                                                        <td th:text="${faxNumber.value}">number</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="panel panel-default" id="email">
+                                                        <img th:src="@{/images/icon-email.png}" width="25px" height="25px" style="float: right; margin-top: 15px; margin-right: 15px;"/>
+                                                        <div class="panel-heading white-background" style="border-color: white;"><h4>E-Mail</h4>
+                                                            <div class="panel-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <th>Title</th>
+                                                                    <th>Address</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr th:each="emailAddress : ${contactInformation.emailAddresses}">
+                                                                        <td th:text="${emailAddress.key}">title</td>
+                                                                        <td th:text="${emailAddress.value}">address</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="panel panel-default">
+                                                        <img th:src="@{/images/icon-about.png}" width="25px" height="25px" style="float: right; margin-top: 15px; margin-right: 15px;"/>
+                                                        <div class="panel-heading white-background" id="about"><h4>About</h4>
+                                                            <div class="panel-body">
+                                                                <pre th:text="${contactInformation.aboutText}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+</div>
+
+<div th:replace="fragments/fragments :: div.scripts"></div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var phoneHeight = $('#phone').height();
+        var addressHeight = $('#address').height();
+        if (phoneHeight > addressHeight) {
+            $('#address').css({'height': phoneHeight});
+        } else {
+            $('#phone').css({'height': addressHeight});
+        }
+
+        var emailHeight = $('#email').height();
+        var faxHeight = $('#fax').height();
+        if (emailHeight > faxHeight) {
+            $('#fax').css({'height': emailHeight});
+        } else {
+            $('#email').css({'height': faxHeight});
+        }
+    });
+</script>
+</body>
+</html>
