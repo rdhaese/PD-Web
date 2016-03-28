@@ -9,7 +9,7 @@
     <version>1.3.0.RELEASE</version>
   </parent>
 
-  <groupId>be.rdhaese.packetdelivery.web</groupId>
+  <groupId>be.rdhaese.packetdelivery</groupId>
   <artifactId>web</artifactId>
   <version>1.0-SNAPSHOT</version>
 

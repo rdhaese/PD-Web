@@ -66,7 +66,7 @@ public class App extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-    
+
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new SpringApplicationBuilder(App.class).profiles("production").build().run(args);
