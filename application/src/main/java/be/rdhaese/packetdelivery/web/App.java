@@ -1,5 +1,7 @@
 package be.rdhaese.packetdelivery.web;
 
+import be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation.util.ManifestReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,8 +13,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.util.StringUtils;
 
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.Locale;
+import java.util.jar.Manifest;
 
 /**
  * Hello world!
@@ -20,12 +26,26 @@ import java.util.Locale;
 @SpringBootApplication
 public class App extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public ClassLoaderTemplateResolver classLoaderTemplateResolver(){
-        ClassLoaderTemplateResolver classLoaderTemplateResolver = new ClassLoaderTemplateResolver();
-        classLoaderTemplateResolver.setPrefix("thymeleaf-implementation-1.0-SNAPSHOT.jar/templates");
+    private static final String TEMPLATES_DIR = "/templates";
+    private static final String JAR_EXTENSION = ".jar";
+    private static final String TITLE_VERSION_SEPARATOR = "-";
 
+    @Autowired
+    private ManifestReader manifestReader;
+
+    @Bean
+    public ClassLoaderTemplateResolver classLoaderTemplateResolver() {
+        ClassLoaderTemplateResolver classLoaderTemplateResolver = new ClassLoaderTemplateResolver();
+        classLoaderTemplateResolver.setPrefix(getTemplatePrefix());
         return classLoaderTemplateResolver;
+    }
+
+    private String getTemplatePrefix(){
+        return String.format("%s%s", getThymeleafImplFullJarName(), TEMPLATES_DIR);
+    }
+
+    private String getThymeleafImplFullJarName(){
+        return String.format("%s%s%s%s", manifestReader.getImplementationTitle(), TITLE_VERSION_SEPARATOR, manifestReader.getImplementationVersion(), JAR_EXTENSION);
     }
 
     @Bean
@@ -46,13 +66,7 @@ public class App extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-
-    //TODO Check if this is necessary and what it is doing... (:
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/getTracker").setViewName("getTracker");
-        registry.addViewController("/").setViewName("getTracker");
-    }
+    
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new SpringApplicationBuilder(App.class).profiles("production").build().run(args);
