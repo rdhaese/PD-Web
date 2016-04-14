@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
  * @author Robin D'Haese
  */
 public interface TrackerController {
-    String getTracker();
     String track(String packetId, HttpServletRequest httpServletRequest);
     String clearPacket(HttpServletRequest httpServletRequest);
 }

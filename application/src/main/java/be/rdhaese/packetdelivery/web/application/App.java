@@ -1,4 +1,4 @@
-package be.rdhaese.packetdelivery.web;
+package be.rdhaese.packetdelivery.web.application;
 
 import be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation.util.ManifestReader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,22 +8,17 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.thymeleaf.util.StringUtils;
 
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.Locale;
-import java.util.jar.Manifest;
 
 /**
  * Hello world!
  */
-@SpringBootApplication
+@SpringBootApplication (scanBasePackages = "be.rdhaese.packetdelivery.web")
 public class App extends WebMvcConfigurerAdapter {
 
     private static final String TEMPLATES_DIR = "/templates";
@@ -69,7 +64,10 @@ public class App extends WebMvcConfigurerAdapter {
 
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = new SpringApplicationBuilder(App.class).profiles("production").build().run(args);
+        new SpringApplicationBuilder(App.class)
+                .profiles("production")
+                .build()
+                .run(args);
     }
 
 }

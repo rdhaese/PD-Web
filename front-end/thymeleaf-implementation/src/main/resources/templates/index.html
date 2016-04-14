@@ -16,7 +16,7 @@
 
                 <div th:if="${session.packet == null}"
                      style="width: 30%; float:none; margin-left: auto; margin-right: auto">
-                    <form method="post" th:action="@{/index}">
+                    <form method="get" th:action="@{/}">
                         <div class="panel panel-default">
                             <div class="panel-heading"><label for="packetId"><p th:text="#{index.enterId}">Enter Packet
                                 ID</p></label></div>

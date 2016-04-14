@@ -1,10 +1,8 @@
 package be.rdhaese.packetdelivery.web.service.proxy_rest_web_service;
 
-import be.rdhaese.packetdelivery.back_end.web_service.interfaces.ContactInformationWebService;
+import be.rdhaese.packetdelivery.back_end.application.web_service.interfaces.ContactInformationWebService;
 import be.rdhaese.packetdelivery.dto.ContactDetailsDTO;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Created on 14/02/2016.
@@ -16,7 +14,7 @@ public class ContactInformationProxyRestWebService extends AbstractService imple
 
     @Override
     public ContactDetailsDTO get() {
-        return getNewRestTemplate().getForEntity(getUris().getContactInformationPath(), ContactDetailsDTO.class).getBody();
+        return getRestTemplate().getForEntity(getUris().getContactInformationPath(), ContactDetailsDTO.class).getBody();
     }
 
     @Override
@@ -26,6 +24,6 @@ public class ContactInformationProxyRestWebService extends AbstractService imple
 
     @Override
     public String getCompanyName() {
-       return getNewRestTemplate().getForEntity(getUris().getCompanyNamePath(), String.class).getBody();
+       return getRestTemplate().getForEntity(getUris().getCompanyNamePath(), String.class).getBody();
     }
 }

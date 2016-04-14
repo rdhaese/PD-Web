@@ -18,16 +18,11 @@ public class TrackerControllerImpl implements TrackerController {
 
     @Override
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String getTracker(){
-        return "index";
-    }
-
-    @Override
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.POST)
-    public String track(@RequestParam String packetId, HttpServletRequest request ) {
+    public String track(@RequestParam(required = false) String packetId, HttpServletRequest request ) {
         //TODO get packet from backend
-        System.out.println(packetId);
-        request.getSession().setAttribute("packet", packetId);
+        if ((packetId != null) && (!(packetId = packetId.trim()).isEmpty())) {
+            request.getSession().setAttribute("packet", packetId);
+        }
         return "index";
     }
 
