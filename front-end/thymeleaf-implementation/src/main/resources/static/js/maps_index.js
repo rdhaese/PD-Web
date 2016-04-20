@@ -2,8 +2,6 @@
 //http://stackoverflow.com/a/2190927/2323354
 //probably do this for maps_contact to
 
-
-//Initialize the map used in ../templates/contact.html
 function initializeMap() {
     //Create variable holding latitude and longitude of the address of CVO Leerstad (project client is fictional, this is a school project)
     latLng = new google.maps.LatLng(51.1115523, 3.9875753);

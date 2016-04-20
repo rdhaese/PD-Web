@@ -4,10 +4,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head"></head>
 <body>
-<form th:object="${longLat}">
-    <input type="hidden" th:field="*{longitude}" />
-    <input type="hidden" th:field="*{latitude}" />
-</form>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAayrG0GhNdnp_HZ8SawVvWvAsJSalbeig"></script>
 <script th:src="@{/js/maps_contact.js}"></script>
 <div th:replace="fragments/fragments :: header"></div>
@@ -17,8 +13,21 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <!--TODO better error page-->
-            <p>Oops, something went wrong...</p>
+            <h1>Oops, something went wrong...</h1>
+
+            <blockquote>
+                We are sorry, but your request could not be handled.<br />
+                Please <a href="mailto:support@packetdelivery.com">mail</a> us the details below of the error if this problem persists.
+            </blockquote>
+
+            <p th:if="${timestamp}" id='created'>
+                <b>Occurred:</b> <span th:text="${timestamp}">Timestamp</span>
+            </p>
+
+            <p th:if="${status}">
+                <b>Response Status:</b> <span th:text="${status}">status-code</span> <span
+                    th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+            </p>
         </div>
     </div>
 

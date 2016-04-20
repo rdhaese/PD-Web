@@ -36,4 +36,12 @@ public class UriUtil {
     public String getLongLatForAddressPath() { return getWithServerPath(getUris().getLongLatForAddress()); }
 
     public String getCompanyNamePath() { return getWithServerPath(getUris().getCompanyName()); }
+
+    public String getCompanyAddressPath() { return getWithServerPath(getUris().getCompanyAddress()); }
+
+    public String getPacketAddressPath() { return getWithServerPath(getUris().getPacketAddress()); }
+
+    public String getLocationUpdatesPath() { return getWithServerPath(getUris().getLocationUpdates()); }
+
+    public String getRemarksPath() { return getWithServerPath(getUris().getRemarks()); }
 }

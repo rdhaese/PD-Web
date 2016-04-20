@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div style="width: 80%; float:none; margin-left:auto; margin-right:auto;">
-
+                <div th:if="${error}" class="alert alert-danger" role="alert" th:text="#{index.errorMessage}" style="text-align: center; padding-top: 5px; padding-bottom: 5px;">error message</div>
                 <div th:if="${session.packet == null}"
                      style="width: 30%; float:none; margin-left: auto; margin-right: auto">
                     <form method="get" th:action="@{/}">
@@ -53,13 +53,13 @@
                     </div>
                     <hr/>
 
-                    <div class="panel panel-default">
+                    <div class="panel panel-default"  th:if="${!remarks.isEmpty()}">
                         <div class="panel-heading">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h3>Remarks
-                                            <small>(5)</small>
+                                            <small th:text="${remarks.size()}">number</small>
                                         </h3>
                                     </div>
                                     <div class="col-md-6" style="text-align: right;">
@@ -75,34 +75,14 @@
                         <div id="remarks-body" class="collapse">
                             <div class="panel-body">The courier added following remarks:</div>
                             <table class="table table-striped" style="width: 100%">
-                                <!--TODO IS NOT SHOWING-->
                                 <thead>
                                 <th>Time Added</th>
                                 <th>Description</th>
                                 </thead>
                                 <tbody>
-                                <!--<tr th:each="phoneNumber : ${contactInformation.phoneNumbers}">
-                                    <td th:text="${phoneNumber.key}">title</td>
-                                    <td th:text="${phoneNumber.value}">number</td>-->
-                                <tr>
-                                    <td>DUMMYDATA</td>
-                                    <td>DUMMYDATA</td>
-                                </tr>
-                                <tr>
-                                    <td>DUMMYDATA</td>
-                                    <td>DUMMYDATA</td>
-                                </tr>
-                                <tr>
-                                    <td>DUMMYDATA</td>
-                                    <td>DUMMYDATA</td>
-                                </tr>
-                                <tr>
-                                    <td>DUMMYDATA</td>
-                                    <td>DUMMYDATA</td>
-                                </tr>
-                                <tr>
-                                    <td>DUMMYDATA</td>
-                                    <td>DUMMYDATA</td>
+                                <tr th:each="remark : ${remarks}">
+                                    <td th:text="${remark.timeAdded}">time added</td>
+                                    <td th:text="${remark.description}">description</td>
                                 </tr>
                                 </tbody>
                             </table>

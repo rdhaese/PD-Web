@@ -36,7 +36,7 @@
                                                             <div class="panel-body">
                                                                 <span th:text="${contactInformation.street}"/>
                                                                 <span th:text="${contactInformation.number}"/>
-                                                                <span th:if="@{(contactInformation.mailbox != null) and (!contactInformation.mailbox.isEmpty)}">, box <span th:text="${contactInformation.mailbox}"/></span><br/>
+                                                                <span th:if="@{(contactInformation.mailbox != null) and (!contactInformation.mailbox.isEmpty)}">- box <span th:text="${contactInformation.mailbox}"/></span><br/>
                                                                 <span th:text="${contactInformation.postalCode}"/> <span th:text="${contactInformation.city}"/>
                                                             </div>
                                                         </div>

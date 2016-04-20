@@ -43,6 +43,10 @@ public class BackEndProperties {
         private String contactInformation;
         private String longLatForAddress;
         private String companyName;
+        private String companyAddress;
+        private String packetAddress;
+        private String locationUpdates;
+        private String remarks;
 
         public String getContactInformation() {
             return contactInformation;
@@ -66,6 +70,38 @@ public class BackEndProperties {
 
         public void setCompanyName(String companyName) {
             this.companyName = companyName;
+        }
+
+        public String getCompanyAddress() {
+            return companyAddress;
+        }
+
+        public void setCompanyAddress(String companyAddress) {
+            this.companyAddress = companyAddress;
+        }
+
+        public String getPacketAddress() {
+            return packetAddress;
+        }
+
+        public void setPacketAddress(String packetAddress) {
+            this.packetAddress = packetAddress;
+        }
+
+        public String getLocationUpdates() {
+            return locationUpdates;
+        }
+
+        public void setLocationUpdates(String locationUpdates) {
+            this.locationUpdates = locationUpdates;
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
         }
     }
 }
