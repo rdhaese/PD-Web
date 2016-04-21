@@ -1,6 +1,6 @@
 package be.rdhaese.packetdelivery.web.service.proxy_rest_web_service;
 
-import be.rdhaese.packetdelivery.back_end.application.web_service.interfaces.TrackerWebService;
+import be.rdhaese.packetdelivery.back_end.web_service.interfaces.TrackerWebService;
 import be.rdhaese.packetdelivery.dto.LocationUpdateDTO;
 import be.rdhaese.packetdelivery.dto.LongLatDTO;
 import be.rdhaese.packetdelivery.dto.RemarkDTO;

@@ -1,6 +1,6 @@
 package be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation;
 
-import be.rdhaese.packetdelivery.back_end.application.web_service.interfaces.TrackerWebService;
+import be.rdhaese.packetdelivery.back_end.web_service.interfaces.TrackerWebService;
 import be.rdhaese.packetdelivery.dto.AddressDTO;
 import be.rdhaese.packetdelivery.dto.LocationUpdateDTO;
 import be.rdhaese.packetdelivery.dto.LongLatDTO;

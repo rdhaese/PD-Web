@@ -81,7 +81,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="remark : ${remarks}">
-                                    <td th:text="${remark.timeAdded}">time added</td>
+                                    <td th:text="${#dates.format(remark.timeAdded, #messages.msg('app.dateformat'))}">time added</td>
                                     <td th:text="${remark.description}">description</td>
                                 </tr>
                                 </tbody>
