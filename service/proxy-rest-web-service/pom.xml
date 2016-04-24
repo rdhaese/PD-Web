@@ -14,13 +14,12 @@
 
   <packaging>jar</packaging>
 
-  <name>proxy-rest-web-service</name>
+  <name>web-service-proxy-rest-web-service</name>
 
   <dependencies>
     <dependency>
       <groupId>be.rdhaese.packetdelivery.back-end.web-service</groupId>
       <artifactId>interfaces</artifactId>
-      <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
   

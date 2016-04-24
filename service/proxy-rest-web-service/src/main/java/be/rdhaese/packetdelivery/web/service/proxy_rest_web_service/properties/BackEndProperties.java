@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author Robin D'Haese
  */
 @Component
-@ConfigurationProperties(locations = "classpath:back-end.properties")
+@ConfigurationProperties(prefix = "back_end")
 public class BackEndProperties {
     private String ip;
     private String port;

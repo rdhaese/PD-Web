@@ -14,9 +14,10 @@
 
   <modules>
     <module>proxy-rest-web-service</module>
+    <module>logging</module>
   </modules>
 
   <packaging>pom</packaging>
 
-  <name>service</name>
+  <name>web-service</name>
 </project>

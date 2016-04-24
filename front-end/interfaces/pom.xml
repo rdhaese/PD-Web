@@ -14,5 +14,5 @@
 
   <packaging>jar</packaging>
 
-  <name>interfaces</name>
+  <name>web-front-end-interfaces</name>
 </project>

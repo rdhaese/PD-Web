@@ -19,5 +19,5 @@
 
   <packaging>pom</packaging>
 
-  <name>front-end</name>
+  <name>web-front-end</name>
 </project>
