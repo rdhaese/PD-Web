@@ -29,10 +29,14 @@ public class TrackerControllerImpl implements TrackerController {
     private static final String ATTR_COMPANY_ADDRESS = "companyAddress";
     private static final String ATTR_PACKET_ADDRESS = "packetAddress";
     private static final String ATTR_LOCATION_UPDATES = "locationUpdates";
+    private static final String ATTR_AMOUNT_OF_PACKETS = "amountOfPackets";
     private static final String ATTR_REMARKS = "remarks";
     private static final String ATTR_ERROR = "error";
 
-  @Autowired
+
+    public static final String PAGE_INDEX = "index";
+
+    @Autowired
     private TrackerWebService trackerService;
 
     @Override
@@ -63,6 +67,9 @@ public class TrackerControllerImpl implements TrackerController {
                 //Get remarks for round where packet is part of and put those on the request
                 Collection<RemarkDTO> remarks = trackerService.getRemarks(packetId);
                 model.addAttribute(ATTR_REMARKS, remarks);
+
+                //Get amount of packets that are left before the tracked one and put it on the request
+                model.addAttribute(ATTR_AMOUNT_OF_PACKETS, trackerService.getAmountOfPacketsLeftBefore(packetId));
             } catch (Exception e){
                 //Remove packet id from session
                session.setAttribute(ATTR_PACKET, null);
@@ -71,7 +78,7 @@ public class TrackerControllerImpl implements TrackerController {
                 model.addAttribute(ATTR_ERROR, true);
             }
         }
-        return "index";
+        return PAGE_INDEX;
     }
 
     @Override
@@ -79,8 +86,6 @@ public class TrackerControllerImpl implements TrackerController {
     public String clearPacket(HttpSession session) {
         //Remove the packet id from the session
         session.setAttribute(ATTR_PACKET, null);
-        return "index";
+        return PAGE_INDEX;
     }
-
-
 }

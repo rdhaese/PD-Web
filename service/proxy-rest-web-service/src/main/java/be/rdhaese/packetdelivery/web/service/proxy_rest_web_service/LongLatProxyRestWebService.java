@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class LongLatProxyRestWebService extends AbstractService implements LongLatWebService {
 
     @Override
-    public LongLatDTO getForAddress(AddressDTO addressDTO) {
-        return getRestTemplate().postForObject(getUris().getLongLatForAddressPath(), addressDTO, LongLatDTO.class);
+    public LongLatDTO getForAddress(AddressDTO addressDTO) throws Exception{
+        return getRestTemplate().postForObject(getBackEndProperties().getUris().getLongLatForAddress(), addressDTO, LongLatDTO.class);
     }
 }

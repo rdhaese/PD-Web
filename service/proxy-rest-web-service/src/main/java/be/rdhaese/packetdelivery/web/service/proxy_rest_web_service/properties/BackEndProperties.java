@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class BackEndProperties {
     private String ip;
     private String port;
+    private String serverPath;
     private Uris uris;
 
     public String getIp() {
@@ -31,6 +32,14 @@ public class BackEndProperties {
         this.port = port;
     }
 
+    public String getServerPath() {
+        return serverPath;
+    }
+
+    public void setServerPath(String serverPath) {
+        this.serverPath = serverPath;
+    }
+
     public Uris getUris() {
         return uris;
     }
@@ -39,7 +48,7 @@ public class BackEndProperties {
         this.uris = uris;
     }
 
-    public static class Uris{
+    public static class Uris {
         private String contactInformation;
         private String longLatForAddress;
         private String companyName;
@@ -47,6 +56,7 @@ public class BackEndProperties {
         private String packetAddress;
         private String locationUpdates;
         private String remarks;
+        private String packetsLeftBefore;
 
         public String getContactInformation() {
             return contactInformation;
@@ -102,6 +112,14 @@ public class BackEndProperties {
 
         public void setRemarks(String remarks) {
             this.remarks = remarks;
+        }
+
+        public String getPacketsLeftBefore() {
+            return packetsLeftBefore;
+        }
+
+        public void setPacketsLeftBefore(String packetsLeftBefore) {
+            this.packetsLeftBefore = packetsLeftBefore;
         }
     }
 }

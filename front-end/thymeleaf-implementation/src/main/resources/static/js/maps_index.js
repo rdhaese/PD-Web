@@ -7,7 +7,7 @@ function initializeMap() {
             size: iconsSize,
         },
         locationUpdate: {
-            url :"../images/map/location-update.png",
+            url: "../images/map/location-update.png",
             size: iconsSize,
         },
         currentPosition: {
@@ -25,8 +25,14 @@ function initializeMap() {
     var packetAddress = new google.maps.LatLng(APP_CONTEXT.packetAddress.latitude, APP_CONTEXT.packetAddress.longitude);
     //Create google maps LatLng object for last location update
     var locationUpdates = APP_CONTEXT.locationUpdates;
+
+    //Determine last location update, start with company address
+    var lastLocationUpdate = companyAddress;
     var lastUpdateIndex = locationUpdates.length - 1;
-    var lastLocationUpdate = new google.maps.LatLng(locationUpdates[lastUpdateIndex].latitude, locationUpdates[lastUpdateIndex].longitude);
+    if (lastUpdateIndex >= 0) {
+        //Means there are location updates, use the lastUpdateIndex to get the last location update
+        lastLocationUpdate = new google.maps.LatLng(locationUpdates[lastUpdateIndex].latitude, locationUpdates[lastUpdateIndex].longitude);
+    }
 
     //create properties for map
     var mapProp = {
@@ -42,15 +48,21 @@ function initializeMap() {
     //create map
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-   //Create a marker with infowindow for company address
+    //Create a marker with infowindow for company address
     createMarker(map, companyAddress, APP_CONTEXT.msgs.companyDepot, icons.companyDepot);
 
-    //For each location update (except the last one), create a marker
-    createLocationUpdateMarkers(locationUpdates, map, icons.locationUpdate);
+    if (locationUpdates.length > 0) {
+        //At least 1 location update
+        //Create a marker with infowindow for last location update
+        //create infowindow
+        createMarker(map, lastLocationUpdate, APP_CONTEXT.msgs.lastKnownLocation, icons.currentPosition);
 
-    //Create a marker with infowindow for last location update
-    //create infowindow
-    createMarker(map, lastLocationUpdate, APP_CONTEXT.msgs.lastKnownLocation, icons.currentPosition);
+        if (locationUpdates.length > 1) {
+            //More than 1 location update
+            //For each location update (except the last one), create a marker
+            createLocationUpdateMarkers(locationUpdates, map, icons.locationUpdate);
+        }
+    }
 
     //Create a marker with infowindow for packet address
     //create infowindow
@@ -105,14 +117,17 @@ function showLastRoute(map, lastLocationUpdate, packetAddress) {
 
 function calculateAndDisplayRoute(directionsDisplay, directionsService, lastLocationUpdate, packetAddress) {
     // Retrieve the start and end locations and create a DirectionsRequest using
-    // WALKING directions.
+    // DRIVING directions.
     directionsService.route({
         origin: lastLocationUpdate,
         destination: packetAddress,
         travelMode: google.maps.TravelMode.DRIVING
-    }, function(response, status) {
+    }, function (response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            var point = response.routes[0].legs[0];
+            $('#timeLeft').html(point.duration.text);
+            $('#distanceLeft').html(point.distance.text);
         } else {
             window.alert(APP_CONTEXT.msgs.directionsError + 'INFO: ' + status);
         }

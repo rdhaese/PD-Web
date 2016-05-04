@@ -1,6 +1,6 @@
 package be.rdhaese.packetdelivery.web.service.proxy_rest_web_service;
 
-import be.rdhaese.packetdelivery.web.service.proxy_rest_web_service.util.UriUtil;
+import be.rdhaese.packetdelivery.web.service.proxy_rest_web_service.properties.BackEndProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,20 +12,16 @@ import org.springframework.web.client.RestTemplate;
 public class AbstractService {
 
     @Autowired
-    private UriUtil uris;
+    private BackEndProperties backEndProperties;
 
     @Autowired
     private RestTemplate restTemplate;
 
-    public UriUtil getUris() {
-        return uris;
-    }
-
-    public void setUris(UriUtil uris) {
-        this.uris = uris;
-    }
-
-    public RestTemplate getRestTemplate() {
+    protected RestTemplate getRestTemplate() {
         return restTemplate;
+    }
+
+    protected BackEndProperties getBackEndProperties() {
+        return backEndProperties;
     }
 }

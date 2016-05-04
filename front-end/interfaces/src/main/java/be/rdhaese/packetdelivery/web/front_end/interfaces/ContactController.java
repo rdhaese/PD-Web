@@ -9,5 +9,5 @@ import org.springframework.ui.Model;
  */
 public interface ContactController {
 
-    String getContact(Model model);
+    String getContact(Model model) throws Exception;
 }

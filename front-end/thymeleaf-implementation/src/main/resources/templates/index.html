@@ -1,6 +1,3 @@
-<!--TODO remove jquery libs if not used-->
-<!--TODO extract css into classes-->
-<!--TODO replace text with properties-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments/fragments :: head"></head>
 <body>
@@ -27,25 +24,25 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div style="width: 80%; float:none; margin-left:auto; margin-right:auto;">
-                <div th:if="${error}" class="alert alert-danger" role="alert" th:text="#{index.errorMessage}"
-                     style="text-align: center; padding-top: 5px; padding-bottom: 5px;">error message
+            <div class="centerdiv">
+                <div th:if="${error}" class="alert alert-danger errorMessage" role="alert"
+                     th:text="#{index.errorMessage}">error message
                 </div>
-                <div th:if="${session.packet == null}"
-                     style="width: 30%; float:none; margin-left: auto; margin-right: auto">
+                <div th:if="${session.packet == null}" class="enter-id">
                     <form method="get" th:action="@{/}">
                         <div class="panel panel-default">
                             <div class="panel-heading"><label for="packetId"><p th:text="#{index.enterId}">Enter Packet
                                 ID</p></label></div>
-                            <div class="panel-body" style="text-align: center;">
+                            <div class="panel-body centered-text">
                                 <input type="text" id="packetId" name="packetId" class="form-control"/>
-                                <input type="submit" class="btn btn-primary form-control" value="Track"/>
+                                <input type="submit" class="btn btn-primary form-control"
+                                       th:value="#{index.button.track}"/>
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <div th:if="${session.packet != null}" style="width: 100%;">
+                <div th:if="${session.packet != null}">
 
 
                     <div class="panel panel-default">
@@ -53,13 +50,17 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <h3>Location Updates
-                                            <small>For Packet: <span th:text="${session.packet}"/></small>
+                                        <h3><span th:text="#{index.locationUpdates.title}">Location Updates</span>
+                                            <small><span
+                                                    th:text="#{index.locationUpdates.title.small}">For Packet</span>:
+                                                <span th:text="${session.packet}"/></small>
                                         </h3>
                                     </div>
                                     <div class="col-md-3" style="text-align: right;">
                                         <a th:href="@{/clear-packet}" class="btn btn-primary" role="button"
-                                           style="margin-top: 10px;">Track Other
+                                           style="margin-top: 10px;"
+                                           th:text="#{index.locationUpdates.trackOtherPacket}">Track
+                                            Other
                                             Packet</a>
                                     </div>
                                 </div>
@@ -70,24 +71,53 @@
                             <div class="container-fluid" style="text-align: center">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <img th:src="@{/images/map/packet-address.png}"/> Delivery address
-                                        </div>
-                                    <div class="col-md-3">
-                                        <img
-                                                th:src="@{/images/map/current-position.png}"/>Courier's last known location
+                                        <img th:src="@{/images/map/packet-address.png}"/><span
+                                            th:text="#{index.locationUpdates.legend.deliveryAddress}">Delivery address</span>
                                     </div>
                                     <div class="col-md-3">
                                         <img
-                                                th:src="@{/images/map/location-update.png}"/>Location update
+                                                th:src="@{/images/map/current-position.png}"/><span
+                                            th:text="#{index.locationUpdates.legend.lastKnownLocation}">Courier's last known location</span>
                                     </div>
                                     <div class="col-md-3">
                                         <img
-                                                th:src="@{/images/map/company-depot.png}"/>Company Depot
+                                                th:src="@{/images/map/location-update.png}"/><span
+                                            th:text="#{index.locationUpdates.legend.locationUpdate}">Location update</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img
+                                                th:src="@{/images/map/company-depot.png}"/><span
+                                            th:text="#{index.locationUpdates.legend.companyDepot}">Company Depot</span>
                                     </div>
                                 </div>
+
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="col-md-4 route-data">
+                                        <span th:text="#{index.locationUpdates.footer.packetsLeft}"/>: <span th:text="${amountOfPackets}"/>
+                                    </div>
+                                    <div class="col-md-4 route-data">
+                                        <span th:text="#{index.locationUpdates.footer.timeLeft}"/>: <span
+                                            id="timeLeft"></span>
+                                    </div>
+                                    <div class="col-md-4 route-data">
+                                        <span th:text="#{index.locationUpdates.footer.distanceLeft}"/>: <span
+                                            id="distanceLeft"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <small th:text="#{index.locationUpdates.footer.disclaimer}">The data displayed
+                                            are estimates.
+                                        </small>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
+
                     <hr/>
 
                     <div class="panel panel-default" th:if="${!remarks.isEmpty()}">
@@ -95,7 +125,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h3>Remarks
+                                        <h3><span th:text="#{index.remarks.title}">Remarks</span>
                                             <small th:text="${remarks.size()}">number</small>
                                         </h3>
                                     </div>
@@ -103,22 +133,25 @@
                                         <button data-toggle="collapse" data-target="#remarks-body"
                                                 style="margin-top: 10px;"
                                                 class="btn btn-primary" id="remarks-toggle"><span
-                                                class="show-toggle">&#x25BC;</span> Show
+                                                class="show-toggle">&#x25BC;</span> <span
+                                                th:text="#{index.remarks.button.show}">Show</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="remarks-body" class="collapse">
-                            <div class="panel-body">The courier added following remarks:</div>
+                            <div class="panel-body" th:text="#{index.remarks.following}">The courier added following
+                                remarks:
+                            </div>
                             <table class="table table-striped" style="width: 100%">
                                 <thead>
-                                <th>Time Added</th>
-                                <th>Description</th>
+                                <th th:text="#{index.remarks.timeAdded}">Time Added</th>
+                                <th th:text="#{index.remarks.description}">Description</th>
                                 </thead>
                                 <tbody>
                                 <tr th:each="remark : ${remarks}">
-                                    <td th:text="${#dates.format(remark.timeAdded, #messages.msg('app.dateformat'))}">
+                                    <td th:text="${#dates.format(remark.timeAdded, #messages.msg('app.dateTimeFormat'))}">
                                         time added
                                     </td>
                                     <td th:text="${remark.description}">description</td>
@@ -136,17 +169,15 @@
 </div>
 
 <div th:replace="fragments/fragments :: div.scripts"></div>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 
     $("#remarks-body").on("shown.bs.collapse", function () {
-        console.log('in shown')
-        $('#remarks-toggle').html('<span class="hide-toggle">&#x25B2;</span> Hide');
+        $('#remarks-toggle').html('<span class="hide-toggle">&#x25B2;</span>'.concat(/*[[#{index.remarks.button.hide}]]*/));
         window.scrollTo(0, document.body.scrollHeight);
     });
 
     $("#remarks-body").on("hidden.bs.collapse", function () {
-        console.log('in hidden');
-        $('#remarks-toggle').html('<span class="show-toggle">&#x25BC;</span> Show');
+        $('#remarks-toggle').html('<span class="show-toggle">&#x25BC;</span>'.concat(/*[[#{index.remarks.button.show}]]*/));
     });
 </script>
 </body>

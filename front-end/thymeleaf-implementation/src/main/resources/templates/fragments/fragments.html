@@ -10,10 +10,6 @@
     <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
     <link th:href="@{/css/bootstrap-3.0.3.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
-    <link th:href="@{/css/jquery-ui.css}" rel="stylesheet"/>
-    <link th:href="@{/css/jquery-ui.structure.css}" rel="stylesheet"/>
-    <link th:href="@{/css/jquery-ui.theme.css}" rel="stylesheet"/>
-    <link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
@@ -22,8 +18,8 @@
         <img th:src="@{/images/pd-logo.png}" />
     </div>
     <div class="container">
-        <a class="navbar-brand pd-brand" href="/"><span class="pd-primary1">P</span><span class="pd-primary2">D</span>
-            Tracker</a>
+        <a class="navbar-brand pd-brand" href="/"><span class="pd-primary1" th:text="#{fragments.navbar.brand.part1}">P</span><span class="pd-primary2" th:text="#{fragments.navbar.brand.part2}">D</span>
+            <span th:text="#{fragments.navbar.brand.part3}">Tracker</span></a>
 
         <ul class="nav navbar-nav headertext ">
             <li><a th:href="@{/contact}" th:text="#{fragments.navbar.contact}"></a></li>
@@ -32,17 +28,13 @@
 </div>
 
 <div class="page-header text-center" id="page-header">
-    <h1><span class="pd-primary1">Packet</span><span class="pd-primary2">Delivery</span> <span style="color:grey;">Tracker</span>
+    <h1><span class="pd-primary1" th:text="#{fragments.header.firstWord}">Packet</span><span class="pd-primary2" th:text="#{fragments.header.secondWord}">Delivery</span> <span style="color:grey;" th:text="#{fragments.header.thirdWord}">Tracker</span>
     </h1>
 </div>
 
 <div class="scripts" th:remove="tag">
-    <script th:src="@{/js/jquery-2.0.2.min.js}"></script>
+    <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
     <script th:src="@{/js/bootstrap-3.0.3.min.js}"></script>
-    <script th:src="@{/js/jquery.dataTables.js}"></script>
-    <script th:src="@{/js/jquery.ui.js}"></script>
-    <script th:src="@{/js/jquery.dataTables.columnFilter.js}"></script>
-    <script th:src="@{/js/jquery-ui.js}"></script>
 </div>
 </body>
 </html>

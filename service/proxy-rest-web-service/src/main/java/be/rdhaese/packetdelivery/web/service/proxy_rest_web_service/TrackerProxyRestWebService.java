@@ -18,20 +18,20 @@ import java.util.Collection;
 public class TrackerProxyRestWebService extends AbstractService implements TrackerWebService {
 
     @Override
-    public LongLatDTO getCompanyAddress() {
-        return getRestTemplate().getForObject(getUris().getCompanyAddressPath(), LongLatDTO.class);
+    public LongLatDTO getCompanyAddress() throws Exception{
+        return getRestTemplate().getForObject(getBackEndProperties().getUris().getCompanyAddress(), LongLatDTO.class);
     }
 
     @Override
-    public LongLatDTO getPacketAddress(String packetId) {
-        return getRestTemplate().getForObject(getUris().getPacketAddressPath(), LongLatDTO.class, packetId);
+    public LongLatDTO getPacketAddress(String packetId) throws Exception{
+        return getRestTemplate().getForObject(getBackEndProperties().getUris().getPacketAddress(), LongLatDTO.class, packetId);
     }
 
     @Override
     public Collection<LocationUpdateDTO> getLocationUpdates(String packetId) {
         return Arrays.asList(
                 getRestTemplate()
-                        .getForObject(getUris().getLocationUpdatesPath(), LocationUpdateDTO[].class, packetId));
+                        .getForObject(getBackEndProperties().getUris().getLocationUpdates(), LocationUpdateDTO[].class, packetId));
 
     }
 
@@ -39,6 +39,11 @@ public class TrackerProxyRestWebService extends AbstractService implements Track
     public Collection<RemarkDTO> getRemarks(String packetId) {
         return Arrays.asList(
                 getRestTemplate()
-                        .getForObject(getUris().getRemarksPath(), RemarkDTO[].class, packetId));
+                        .getForObject(getBackEndProperties().getUris().getRemarks(), RemarkDTO[].class, packetId));
+    }
+
+    @Override
+    public Integer getAmountOfPacketsLeftBefore(String packetId) throws Exception{
+        return getRestTemplate().getForObject(getBackEndProperties().getUris().getPacketsLeftBefore(), Integer.class, packetId);
     }
 }
