@@ -28,6 +28,12 @@ public class App extends WebMvcConfigurerAdapter {
     @Autowired
     private ManifestReader manifestReader;
 
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(App.class)
+                .build()
+                .run(args);
+    }
+
     @Bean
     public ClassLoaderTemplateResolver classLoaderTemplateResolver() {
         ClassLoaderTemplateResolver classLoaderTemplateResolver = new ClassLoaderTemplateResolver();
@@ -61,13 +67,4 @@ public class App extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-
-
-    public static void main(String[] args) {
-        new SpringApplicationBuilder(App.class)
-                .profiles("production")
-                .build()
-                .run(args);
-    }
-
 }

@@ -1,15 +1,6 @@
-<!--TODO remove jquery libs if not used-->
-<!--TODO extract css into classes-->
-<!--TODO replace text with properties-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head"></head>
 <body>
-<form th:object="${longLat}">
-    <input type="hidden" th:field="*{longitude}" />
-    <input type="hidden" th:field="*{latitude}" />
-</form>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAayrG0GhNdnp_HZ8SawVvWvAsJSalbeig"></script>
-<script th:src="@{/js/maps_contact.js}"></script>
 <div th:replace="fragments/fragments :: header"></div>
 
 <div class="container">
@@ -17,8 +8,20 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <!--TODO better error page-->
-            <p>Oops, something went wrong...</p>
+            <h1 th:text="#{error.oops}">Oops, something went wrong...</h1>
+
+            <blockquote><span th:text="#{error.sorry}">We are sorry, but your request could not be handled.</span><br />
+                <span th:text="#{error.mail.part1}">Please</span> <a href="mailto:support@packetdelivery.com" th:text="#{error.mail.part2}">mail</a> <span th:text="#{error.mail.part3}">us the details below of the error if this problem persists.</span>
+            </blockquote>
+
+            <p th:if="${timestamp}" id='created'>
+                <b th:text="#{error.occurred}">Occurred:</b> <span th:text="${timestamp}">Timestamp</span>
+            </p>
+
+            <p th:if="${status}">
+                <b th:text="error.status">Response Status:</b> <span th:text="${status}">status-code</span> <span
+                    th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+            </p>
         </div>
     </div>
 

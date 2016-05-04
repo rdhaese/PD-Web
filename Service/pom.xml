@@ -18,5 +18,5 @@
 
   <packaging>pom</packaging>
 
-  <name>service</name>
+  <name>web-service</name>
 </project>

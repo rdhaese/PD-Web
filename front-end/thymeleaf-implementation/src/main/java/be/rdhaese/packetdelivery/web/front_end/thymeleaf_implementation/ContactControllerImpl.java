@@ -1,7 +1,7 @@
 package be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation;
 
-import be.rdhaese.packetdelivery.back_end.application.web_service.interfaces.ContactInformationWebService;
-import be.rdhaese.packetdelivery.back_end.application.web_service.interfaces.LongLatWebService;
+import be.rdhaese.packetdelivery.back_end.web_service.interfaces.ContactInformationWebService;
+import be.rdhaese.packetdelivery.back_end.web_service.interfaces.LongLatWebService;
 import be.rdhaese.packetdelivery.dto.AddressDTO;
 import be.rdhaese.packetdelivery.dto.ContactDetailsDTO;
 import be.rdhaese.packetdelivery.dto.LongLatDTO;
@@ -21,6 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ContactControllerImpl implements ContactController {
 
+    public static final String ATTR_CONTACT_INFORMATION = "contactInformation";
+    public static final String ATTR_LONG_LAT = "longLat";
+
+    public static final String PAGE_CONTACT = "contact";
+
     @Autowired
     private ContactInformationWebService contactInformationService;
     @Autowired
@@ -28,13 +33,13 @@ public class ContactControllerImpl implements ContactController {
 
     @Override
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String getContact(Model model) {
+    public String getContact(Model model) throws Exception{
         ContactDetailsDTO contactDetailsDTO= contactInformationService.get();
-        model.addAttribute("contactInformation", contactDetailsDTO);
+        model.addAttribute(ATTR_CONTACT_INFORMATION, contactDetailsDTO);
         AddressDTO addressDTO = mapToAddressDTO(contactDetailsDTO);
         LongLatDTO longLat = longLatService.getForAddress(addressDTO);
-        model.addAttribute("longLat", longLat);
-        return "contact";
+        model.addAttribute(ATTR_LONG_LAT, longLat);
+        return PAGE_CONTACT;
     }
 
     private AddressDTO mapToAddressDTO(ContactDetailsDTO contactDetailsDTO) {

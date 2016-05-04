@@ -1,6 +1,6 @@
 package be.rdhaese.packetdelivery.web.service.proxy_rest_web_service;
 
-import be.rdhaese.packetdelivery.back_end.application.web_service.interfaces.ContactInformationWebService;
+import be.rdhaese.packetdelivery.back_end.web_service.interfaces.ContactInformationWebService;
 import be.rdhaese.packetdelivery.dto.ContactDetailsDTO;
 import org.springframework.stereotype.Service;
 
@@ -13,17 +13,17 @@ import org.springframework.stereotype.Service;
 public class ContactInformationProxyRestWebService extends AbstractService implements ContactInformationWebService {
 
     @Override
-    public ContactDetailsDTO get() {
-        return getRestTemplate().getForEntity(getUris().getContactInformationPath(), ContactDetailsDTO.class).getBody();
+    public ContactDetailsDTO get() throws Exception{
+        return getRestTemplate().getForEntity(getBackEndProperties().getUris().getContactInformation(), ContactDetailsDTO.class).getBody();
     }
 
     @Override
-    public boolean post(ContactDetailsDTO contactDetailsDTO) {
+    public boolean post(ContactDetailsDTO contactDetailsDTO) throws Exception{
         throw new UnsupportedOperationException("Cannot change contact information from web application");
     }
 
     @Override
-    public String getCompanyName() {
-       return getRestTemplate().getForEntity(getUris().getCompanyNamePath(), String.class).getBody();
+    public String getCompanyName() throws Exception{
+       return getRestTemplate().getForEntity(getBackEndProperties().getUris().getCompanyName(), String.class).getBody();
     }
 }
