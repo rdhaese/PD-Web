@@ -21,6 +21,19 @@
       <groupId>be.rdhaese.packetdelivery.back-end.web-service</groupId>
       <artifactId>interfaces</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>2.2.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
 </project>

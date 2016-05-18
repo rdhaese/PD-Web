@@ -1,7 +1,6 @@
 package be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation;
 
 import be.rdhaese.packetdelivery.back_end.web_service.interfaces.TrackerWebService;
-import be.rdhaese.packetdelivery.dto.AddressDTO;
 import be.rdhaese.packetdelivery.dto.LocationUpdateDTO;
 import be.rdhaese.packetdelivery.dto.LongLatDTO;
 import be.rdhaese.packetdelivery.dto.RemarkDTO;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
@@ -50,7 +48,7 @@ public class TrackerControllerImpl implements TrackerController {
         //Get the packetId that is present on the session
         packetId = (String) session.getAttribute(ATTR_PACKET);
 
-        if (packetId != null){
+        if (packetId != null) {
             try {
                 //Get packetdelivery address and put it on the request
                 LongLatDTO companyAddress = trackerService.getCompanyAddress();
@@ -70,9 +68,9 @@ public class TrackerControllerImpl implements TrackerController {
 
                 //Get amount of packets that are left before the tracked one and put it on the request
                 model.addAttribute(ATTR_AMOUNT_OF_PACKETS, trackerService.getAmountOfPacketsLeftBefore(packetId));
-            } catch (Exception e){
+            } catch (Exception e) {
                 //Remove packet id from session
-               session.setAttribute(ATTR_PACKET, null);
+                session.setAttribute(ATTR_PACKET, null);
 
                 //Set an error flag on the request
                 model.addAttribute(ATTR_ERROR, true);

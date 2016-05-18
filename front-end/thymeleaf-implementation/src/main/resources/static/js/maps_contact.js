@@ -16,7 +16,7 @@ function initialize() {
     };
 
     //create map
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    var map = new google.maps.Map(document.getElementById("google-map"), mapProp);
 
     //create marker at center
     var marker = new google.maps.Marker({

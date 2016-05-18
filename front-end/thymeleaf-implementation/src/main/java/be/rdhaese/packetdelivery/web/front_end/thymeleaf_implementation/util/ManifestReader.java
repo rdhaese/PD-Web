@@ -19,7 +19,7 @@ public class ManifestReader {
         return this.getClass().getPackage().getImplementationTitle();
     }
 
-    public String getImplementationVersion(){
+    public String getSpecificationVersion(){
         return this.getClass().getPackage().getSpecificationVersion();
     }
 }

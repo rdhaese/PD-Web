@@ -4,7 +4,6 @@ import be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation.util.Man
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -46,7 +45,7 @@ public class App extends WebMvcConfigurerAdapter {
     }
 
     private String getThymeleafImplFullJarName(){
-        return String.format("%s%s%s%s", manifestReader.getImplementationTitle(), TITLE_VERSION_SEPARATOR, manifestReader.getImplementationVersion(), JAR_EXTENSION);
+        return String.format("%s%s%s%s", manifestReader.getImplementationTitle(), TITLE_VERSION_SEPARATOR, manifestReader.getSpecificationVersion(), JAR_EXTENSION);
     }
 
     @Bean

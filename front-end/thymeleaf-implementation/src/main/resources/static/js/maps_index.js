@@ -46,7 +46,7 @@ function initializeMap() {
     };
 
     //create map
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    var map = new google.maps.Map(document.getElementById("google-map"), mapProp);
 
     //Create a marker with infowindow for company address
     createMarker(map, companyAddress, APP_CONTEXT.msgs.companyDepot, icons.companyDepot);
