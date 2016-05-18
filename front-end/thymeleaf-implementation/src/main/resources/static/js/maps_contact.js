@@ -20,7 +20,7 @@ function initialize() {
 
     //create marker at center
     var marker = new google.maps.Marker({
-        position: latLng,
+        position: latLng
     });
 
     //set marker on map

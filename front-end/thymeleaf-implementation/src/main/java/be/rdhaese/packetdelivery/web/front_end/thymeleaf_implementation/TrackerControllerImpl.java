@@ -32,7 +32,7 @@ public class TrackerControllerImpl implements TrackerController {
     private static final String ATTR_ERROR = "error";
 
 
-    public static final String PAGE_INDEX = "index";
+    private static final String PAGE_INDEX = "index";
 
     @Autowired
     private TrackerWebService trackerService;

@@ -15,7 +15,7 @@ import java.util.Collection;
  * @author Robin D'Haese
  */
 @Service
-public class TrackerProxyRestWebService extends AbstractService implements TrackerWebService {
+class TrackerProxyRestWebService extends AbstractService implements TrackerWebService {
 
     @Override
     public LongLatDTO getCompanyAddress() throws Exception{

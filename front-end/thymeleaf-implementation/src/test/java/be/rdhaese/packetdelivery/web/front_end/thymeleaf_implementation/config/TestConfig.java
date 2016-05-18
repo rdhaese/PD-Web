@@ -29,11 +29,14 @@ import static org.mockito.Mockito.mock;
 @ComponentScan(basePackages = "be.rdhaese.packetdelivery.web.front_end.thymeleaf_implementation")
 public class TestConfig {
 
+    public static final String PREFIX = "/templates/";
+    public static final String SUFFIX = ".tml";
+
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/templates/");
-        resolver.setSuffix(".tml");
+        resolver.setPrefix(PREFIX);
+        resolver.setSuffix(SUFFIX);
         return resolver;
     }
 

@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
  *
  * @author Robin D'Haese
  */
-public abstract class AbstractService {
+abstract class AbstractService {
 
     @Autowired
     private BackEndProperties backEndProperties;

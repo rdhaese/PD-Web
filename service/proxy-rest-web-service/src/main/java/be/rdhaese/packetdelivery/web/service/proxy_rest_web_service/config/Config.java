@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  * @author Robin D'Haese
  */
 @Configuration
-public class Config {
+class Config {
 
     @Bean
     public RestTemplate restTemplate(){

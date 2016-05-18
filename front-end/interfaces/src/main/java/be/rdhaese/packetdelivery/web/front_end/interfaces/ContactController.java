@@ -9,5 +9,6 @@ import org.springframework.ui.Model;
  */
 public interface ContactController {
 
+    @SuppressWarnings("SameReturnValue")
     String getContact(Model model) throws Exception;
 }

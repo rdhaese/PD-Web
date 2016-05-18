@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @author Robin D'Haese
  */
 @Service
-public class ContactInformationProxyRestWebService extends AbstractService implements ContactInformationWebService {
+class ContactInformationProxyRestWebService extends AbstractService implements ContactInformationWebService {
 
     @Override
     public ContactDetailsDTO get() throws Exception{

@@ -18,7 +18,7 @@ import java.util.Locale;
  * Hello world!
  */
 @SpringBootApplication (scanBasePackages = "be.rdhaese.packetdelivery.web")
-public class App extends WebMvcConfigurerAdapter {
+class App extends WebMvcConfigurerAdapter {
 
     private static final String TEMPLATES_DIR = "/templates";
     private static final String JAR_EXTENSION = ".jar";
