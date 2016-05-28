@@ -1,24 +1,20 @@
 function initializeMap() {
     //Create var for icon files locations
-    var iconsSize = new google.maps.Size(32, 44);
     var icons = {
         companyDepot: {
             url: "../images/map/company-depot.png",
-            size: iconsSize,
         },
         locationUpdate: {
             url: "../images/map/location-update.png",
-            size: iconsSize,
         },
         currentPosition: {
             url: "../images/map/current-position.png",
-            size: iconsSize,
         },
         packetAddress: {
             url: "../images/map/packet-address.png",
-            size: iconsSize,
-        },
-    }
+        }
+    };
+
     //Create google maps LatLng object for company address
     var companyAddress = new google.maps.LatLng(APP_CONTEXT.companyAddress.latitude, APP_CONTEXT.companyAddress.longitude);
     //Create google maps LatLng object for packet address
@@ -91,7 +87,7 @@ function createMarker(map, latLng, tooltipText, icon) {
 }
 
 function createLocationUpdateMarkers(locationUpdates, map, icon) {
-    for (i = 0; i < locationUpdates.length - 1; i++) {
+    for (var i = 0; i < locationUpdates.length - 1; i++) {
         var locationUpdateLatLng = new google.maps.LatLng(locationUpdates[i].latitude, locationUpdates[i].longitude);
         //Format time
         var timeCreated = new Date(locationUpdates[i].timeCreated);

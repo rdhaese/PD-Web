@@ -5,12 +5,11 @@ import be.rdhaese.packetdelivery.dto.ContactDetailsDTO;
 import org.springframework.stereotype.Service;
 
 /**
- * Created on 14/02/2016.
  *
  * @author Robin D'Haese
  */
 @Service
-public class ContactInformationProxyRestWebService extends AbstractService implements ContactInformationWebService {
+class ContactInformationProxyRestWebService extends AbstractService implements ContactInformationWebService {
 
     @Override
     public ContactDetailsDTO get() throws Exception{

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 /**
- * Created on 14/02/2016.
  *
  * @author Robin D'Haese
  */
@@ -32,7 +31,7 @@ public class TrackerControllerImpl implements TrackerController {
     private static final String ATTR_ERROR = "error";
 
 
-    public static final String PAGE_INDEX = "index";
+    private static final String PAGE_INDEX = "index";
 
     @Autowired
     private TrackerWebService trackerService;

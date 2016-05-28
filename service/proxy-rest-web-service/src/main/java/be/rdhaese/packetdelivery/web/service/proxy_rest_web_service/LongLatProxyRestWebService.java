@@ -6,12 +6,11 @@ import be.rdhaese.packetdelivery.dto.LongLatDTO;
 import org.springframework.stereotype.Service;
 
 /**
- * Created on 21/02/2016.
  *
  * @author Robin D'Haese
  */
 @Service
-public class LongLatProxyRestWebService extends AbstractService implements LongLatWebService {
+class LongLatProxyRestWebService extends AbstractService implements LongLatWebService {
 
     @Override
     public LongLatDTO getForAddress(AddressDTO addressDTO) throws Exception{

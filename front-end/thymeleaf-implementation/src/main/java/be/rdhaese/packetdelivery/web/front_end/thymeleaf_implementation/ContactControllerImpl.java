@@ -14,17 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created on 14/02/2016.
  *
  * @author Robin D'Haese
  */
 @Controller
 public class ContactControllerImpl implements ContactController {
 
-    public static final String ATTR_CONTACT_INFORMATION = "contactInformation";
-    public static final String ATTR_LONG_LAT = "longLat";
+    private static final String ATTR_CONTACT_INFORMATION = "contactInformation";
+    private static final String ATTR_LONG_LAT = "longLat";
 
-    public static final String PAGE_CONTACT = "contact";
+    private static final String PAGE_CONTACT = "contact";
 
     @Autowired
     private ContactInformationWebService contactInformationService;
