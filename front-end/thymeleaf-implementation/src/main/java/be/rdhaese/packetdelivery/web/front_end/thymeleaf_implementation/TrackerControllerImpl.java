@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 /**
- * Created on 14/02/2016.
  *
  * @author Robin D'Haese
  */

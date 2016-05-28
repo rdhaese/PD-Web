@@ -6,7 +6,6 @@ import be.rdhaese.packetdelivery.dto.LongLatDTO;
 import org.springframework.stereotype.Service;
 
 /**
- * Created on 21/02/2016.
  *
  * @author Robin D'Haese
  */

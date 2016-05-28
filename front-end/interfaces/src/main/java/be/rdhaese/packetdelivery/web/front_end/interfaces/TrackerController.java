@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created on 14/02/2016.
  *
  * @author Robin D'Haese
  */

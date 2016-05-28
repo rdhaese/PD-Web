@@ -1,22 +1,17 @@
 function initializeMap() {
     //Create var for icon files locations
-    var iconsSize = new google.maps.Size(32, 44);
     var icons = {
         companyDepot: {
             url: "../images/map/company-depot.png",
-            size: iconsSize
         },
         locationUpdate: {
             url: "../images/map/location-update.png",
-            size: iconsSize
         },
         currentPosition: {
             url: "../images/map/current-position.png",
-            size: iconsSize
         },
         packetAddress: {
             url: "../images/map/packet-address.png",
-            size: iconsSize
         }
     };
 
