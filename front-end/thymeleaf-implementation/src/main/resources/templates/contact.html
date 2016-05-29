@@ -108,7 +108,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
+                                                <div class="col-md-12" th:if="${contactInformation.aboutText != null and !contactInformation.aboutText.trim().isEmpty()}">
                                                     <div class="panel panel-default">
                                                         <img th:src="@{/images/icon-about.png}" class="icon"/>
                                                         <div class="panel-heading white-background" id="about"><h4 th:text="#{contact.about}">About</h4>
